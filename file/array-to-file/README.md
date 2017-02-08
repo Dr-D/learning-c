@@ -18,4 +18,4 @@ size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream);
 
 This method takes a pointer, when using arrays the variable name of the array is basically a pointer to the start of the array.
 
-Improve things - could use and array of pointers rather than array of structs, need to free the memory used on the heap.
+Improve things - should free the memory used on the heap-> maybe add a persons_destroy. 
