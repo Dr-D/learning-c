@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-  const char *path = "text.bin";
+  const char *path = "test.bin";
   int i = 10;
   
   FILE *fp_write = fopen(path, "w");
