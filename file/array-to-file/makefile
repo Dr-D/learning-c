@@ -1,5 +1,5 @@
-DEPS=main.c
-OBJS=main.o
+DEPS=main.c person.c
+OBJS=main.o person.o
 CFLAGS=-Wall
 
 main: $(OBJS)
