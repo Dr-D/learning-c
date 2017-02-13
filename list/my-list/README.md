@@ -1,3 +1,3 @@
-#My List
+#My Single link list
 
-Trying a list from my understanding of how lists work.
+Trying a single list from my understanding of how lists work.
