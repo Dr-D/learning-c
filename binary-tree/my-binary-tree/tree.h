@@ -1,16 +1,16 @@
 #include "node.h"
 
-struct List {
-  struct Node *first;
-  struct Node *last;
+struct Tree {
+  struct Node *left;
+  struct Node *right;
 };
 
-struct List *list_create(char *);
+struct Tree *tree_create(int);
 
-void list_add(struct List *, char *);
+void tree_add(struct Tree *, int);
 
-void list_print(struct List *list);
+void tree_print(struct Tree *);
 
-void nodes_print(struct Node *node);
+void nodes_print(struct Node *);
 
-void list_destroy(struct List *list);
+void tree_destroy(struct Tree *);

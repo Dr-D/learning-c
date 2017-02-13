@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "list.h"
+#include "tree.h"
 
 int main(int argc, char *argv[]) {
 
-  struct List *list = list_create("First");
+  struct Tree *tree = tree_create(1);
 
-  list_add(list, "Second");
-  list_add(list, "Third");
-  list_add(list, "Fourth");
+  tree_add(tree, 2);
+  tree_add(tree, 3);
+  tree_add(tree, 4);
 
-  list_print(list);
+  tree_print(tree);
 
-  list_destroy(list);
+  tree_destroy(tree);
   exit(EXIT_SUCCESS);
 }

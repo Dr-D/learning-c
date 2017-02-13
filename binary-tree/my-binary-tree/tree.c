@@ -2,43 +2,43 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "list.h"
+#include "tree.h"
 
-struct List *list_create(char *text) {
-  struct List *list = malloc(sizeof(struct List));
+struct Tree *tree_create(int num) {
+  struct Tree *tree = malloc(sizeof(struct Tree));
   
   struct Node *node = malloc(sizeof(struct Node));
-  strcpy(node->text, text);
+  node->num = num;
 
-  list->first = node;
-  list->last = node;
+  tree->left = node;
+  tree->right = node;
 
-  return list;
+  return tree;
 }
 
-void list_add(struct List *list, char *text) {
-  struct Node *node = malloc(sizeof(struct Node));
-  strcpy(node->text, text);
+void tree_add(struct Tree *tree, int num) {
+  /*struct Node *node = malloc(sizeof(struct Node));
+  node->num = num;
 
-  list->last->link = node;
-  list->last = node;
+  tree->last->link = node;
+  tree->last = node;*/
 }
 
-void list_print(struct List *list) {
-  nodes_print(list->first);
+void tree_print(struct Tree *tree) {
+  //nodes_print(tree->first);
 }
 
 void nodes_print(struct Node *node) {
-  printf("%s\n", node->text);
+  /*printf("%s\n", node->num);
   if(node->link != NULL) {
     nodes_print(node->link);
-  }
+    }*/
 }
 
-void list_destroy(struct List *list) {
-  struct Node *node = list->first;
+void tree_destroy(struct Tree *tree) {
+  /*  struct Node *node = tree->first;
   if(node->link != NULL) {
-    list->first = node->link;
-    list_destroy(list);
-  }
+    tree->first = node->link;
+    tree_destroy(tree);
+    }*/
 }

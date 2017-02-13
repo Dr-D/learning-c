@@ -1,4 +1,4 @@
 struct Node {
-  char text[20];
+  int num;
   struct Node *link;
 };
