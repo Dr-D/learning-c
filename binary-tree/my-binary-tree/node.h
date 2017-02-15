@@ -1,4 +1,5 @@
 struct Node {
   int num;
-  struct Node *link;
+  struct Node *left;
+  struct Node *right;
 };

@@ -9,19 +9,31 @@ struct Tree *tree_create(int num) {
   
   struct Node *node = malloc(sizeof(struct Node));
   node->num = num;
+  node->left = NULL;
+  node->right = NULL;
 
-  tree->left = node;
-  tree->right = node;
-
+  tree->node = node;
   return tree;
 }
 
 void tree_add(struct Tree *tree, int num) {
-  /*struct Node *node = malloc(sizeof(struct Node));
-  node->num = num;
+  struct Node *node_new = malloc(sizeof(struct Node));
+  node_new->num = num;
+  node_new->left = NULL;
+  node_new->right = NULL;
 
-  tree->last->link = node;
-  tree->last = node;*/
+  
+}
+
+void node_add(struct Node *node_current, int num) {
+  struct Node *new_node;
+  if(num < node_current->num) {
+    new_node = node_current->left;
+  }
+  if(num > node_current->num) {
+    new_node = node_current->right;
+  }
+  
 }
 
 void tree_print(struct Tree *tree) {

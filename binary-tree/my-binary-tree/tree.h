@@ -1,8 +1,7 @@
 #include "node.h"
 
 struct Tree {
-  struct Node *left;
-  struct Node *right;
+  struct Node *node;
 };
 
 struct Tree *tree_create(int);
