@@ -1,12 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <unistd.h>
 
 #define ARRAY_SIZE 40
 
 void *run(void*);
+void update_array(int);
 
 int test_array[ARRAY_SIZE];
+pthread_mutex_t mutex;
 
 int main(int argc, char *argv[]) {
   const int THREAD_COUNT = 4;
@@ -38,12 +41,25 @@ int main(int argc, char *argv[]) {
 }
 
 void *run(void* param) {
+  
   int *num = param;
   printf("In thread: '%d'\n", *num);
-  int i;
-  for(i = 0; i < ARRAY_SIZE; i++) {
-    test_array[i]++;
-  }
+  update_array(*num);
 
   return NULL;
+}
+
+void update_array(int thread_num) {
+  //pthread_mutex_lock(&mutex);
+  
+  printf("In thread: '%d'\n", thread_num);
+  int i;
+  for(i = 0; i < ARRAY_SIZE; i++) {    
+    int array_val = test_array[i];
+    int random = rand() %100;
+    usleep(random);
+    test_array[i] = ++array_val;
+  }
+
+  //pthread_mutex_unlock(&mutex);
 }
