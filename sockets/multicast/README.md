@@ -1,6 +1,6 @@
-#multicast client/server
+# multicast client/server
 
-##client.c
+## client.c
 
 Simple example of creating a client to send a multicast request
 Uses struct addrinfo to get the appropriate socket information.
@@ -17,7 +17,7 @@ Send message to socket descriptor
 ```
 man sendto
 ```
-##server.c
+## server.c
 
 Simple example of creating a serer to recieve a multicast request
 
