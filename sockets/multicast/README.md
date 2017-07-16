@@ -16,4 +16,8 @@ Send message to socket descriptor
 man sendto
 
 server.c
+Simple example of creating a serer to recieve a multicast request
 
+Allow bind to a socket already in use with SO_REUSEADDR and join multicast group
+```
+man setsocketopt

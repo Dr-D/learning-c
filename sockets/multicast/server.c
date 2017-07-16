@@ -1,13 +1,14 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <arpa/inet.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <netdb.h>
 #include <unistd.h>
 
-main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
 
   struct addrinfo hints, *res;
   memset(&hints, 0 , sizeof hints);
@@ -32,9 +33,8 @@ main(int argc, char *argv[]) {
 
   while (1) {
     char read_b[100];
-    int addrlen=sizeof(res->ai_addr);
+    memset(&read_b, 0, 100);
     int n =  recvfrom(sd, read_b, 100, 0, res->ai_addr, &res->ai_addrlen);
-    printf("%d", n);
     printf("%s\n", read_b);
   }
 }
