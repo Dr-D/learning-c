@@ -1,4 +1,4 @@
-#c-repo
+# c-repo
 
 Learning C, using Ubuntu.
 

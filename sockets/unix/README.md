@@ -1,4 +1,4 @@
-#unix-socket
+# unix-socket
 
 Simple example of creating a unix socket.
 Creates the socket in the current directory

@@ -1,4 +1,4 @@
-#Basic Pointer to functions
+# Basic Pointer to functions
 
 Simple example of pointer to a function.
 

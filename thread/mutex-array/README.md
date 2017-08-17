@@ -1,4 +1,4 @@
-#Using a mutex for array writes
+# Using a mutex for array writes
 
 Simple example of mtuex.
 

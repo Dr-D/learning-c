@@ -1,4 +1,4 @@
-#Thread with Message
+# Thread with Message
 
 Simple example of posix thread that passes a struct through as message.
 

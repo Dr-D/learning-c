@@ -1,4 +1,4 @@
-#Write array to file
+# Write array to file
 
 Write an array of structs to file and read them back again.
 

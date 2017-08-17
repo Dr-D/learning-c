@@ -1,4 +1,4 @@
-#Passing array of pointers to functions as parameter
+# Passing array of pointers to functions as parameter
 
 Example of array of pointers to a functions being passed as a parameter to a function.
 

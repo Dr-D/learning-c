@@ -1,4 +1,4 @@
-#Passing pointer to function as parameter
+# Passing pointer to function as parameter
 
 Example of pointer to a function being passed as a parameter to a function.
 

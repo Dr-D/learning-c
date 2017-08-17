@@ -1,4 +1,4 @@
-#socket-accept
+# socket-accept
 
 Simple example of creating a socket to accept incoming requests. 
 Uses struct addrinfo to get the appropriate socket information.
