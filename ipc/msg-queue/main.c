@@ -5,7 +5,7 @@
 
 struct msgbuf {
   long mtype;
-  char name[20]; // this can be a struct so that anything can be sent
+  char name[20]; // this can be a struct so that anything can be sent as the message
 };
 
 int main(int argc, char *argv[]) {
@@ -18,14 +18,11 @@ int main(int argc, char *argv[]) {
  
   struct msgbuf mbuf = { 2, "TESTING MESSAGE"};
   int size = sizeof mbuf.name;
-  /* msgsnd(qid, &mbuf, size, 0); */
+  msgsnd(qid, &mbuf, size, 0);
 
   struct msgbuf mbuf_rec;
   msgrcv(qid, &mbuf_rec, size, 2, 0);
 
   printf("Recieved msg: '%s'", mbuf_rec.name);
   return 0;
-
-  //destroy the queue use ipcs to get list of the queues
-  //ipcrm to remove 
 }
