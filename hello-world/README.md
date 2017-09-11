@@ -1,3 +1,3 @@
-#hello-world
+# hello-world
 
 Simple template can copy.
