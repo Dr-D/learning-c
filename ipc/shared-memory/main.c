@@ -2,24 +2,30 @@
 #include <sys/ipc.h>
 #include <sys/shm.h>
 
+struct Person {
+  int age;
+  char name[20];
+};
 
 int main(int argc, char *argv[]) {
-  key_t key;
-  int shmid;
-  char *data;
-  key = ftok("/tmp", 'R');
-  shmid = shmget(key, 1024, 0644 | IPC_CREAT);
-  data = shmat(shmid, (void *)0, 0);
 
-  if (data == (char *)(-1))
-    perror("shmat");
+  key_t key = ftok("/tmp", 'R');
+  int shmid = shmget(key, 1024, 0644 | IPC_CREAT);
 
-  printf("Enter a string: ");
-  gets(data);
+  struct Person *data = shmat(shmid, (void *)0, 0);// returns a void pointer
+  if (data == (struct Person *)(-1)) {
+    perror("shared memory attach(shmat)");
+  }
 
-  printf("shared contents: %s\n", data);
+  printf("Enter age: ");
+  scanf("%d", &data->age);
 
-  shmdt(data);//-1 on error/0 success
+  printf("Enter name: ");
+  scanf("%s", data->name);
+
+  printf("Person: '%s', Age: '%d'\n", data->name, data->age);
+
+  shmdt(data);//shared memory detach -1 on error/0 success
 
   shmctl(shmid, IPC_RMID, NULL);
 
