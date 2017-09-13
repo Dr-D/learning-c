@@ -11,9 +11,9 @@ int main(int argc, char *argv[]) {
   int page_size = getpagesize();
   printf("PageSize: '%d'\n", page_size);
 
-  posix_fallocate(fd, 0, page_size + 1);//the file needs to be big enough to hold page_size
+  posix_fallocate(fd, 0, page_size);//the file needs to be big enough to hold page_size
   
-  char *data =  mmap((caddr_t)0, page_size, PROT_READ|PROT_WRITE, MAP_SHARED, fd, page_size);
+  char *data =  mmap((caddr_t)0, page_size, PROT_READ|PROT_WRITE, MAP_SHARED, fd, 0);
   printf("data: '%s'\n", data);
 
   char *pdata = data;//make copy of pointer that is pointing to start or mapped memory
@@ -25,6 +25,7 @@ int main(int argc, char *argv[]) {
   }
   
   printf("data: '%s'\n", pdata);
-  
+  close(fd);
+
   return 0;
 }
