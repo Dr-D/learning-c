@@ -14,7 +14,7 @@ r - Insert the files
 
 Will create archive libmylib.a.
 
-Then use  ranlib to generate index to archive
+Then use ranlib to generate index to archive
 ```
 man ranlib
 ranlib libmymath.a
@@ -28,7 +28,7 @@ ar -tv libmymath.a
 
 When compling the location to look for libraries can be added and for headers use -I.
 ```
-cc -o main.o -L. -lmymath main.c
+cc -o mainlib main.o -L. -lmymath
 ```
 
 Finding installed libraries, you can use ldconfig the -p prints list of directories and libraries in the current cache. 
@@ -38,7 +38,7 @@ ldconfig -p
 ldconfig -p | grep libc.so
 ```
 
-Where can libraries be installed. ldconfig as above -v shows directories without a leading tab and the libraries in the directories have a with a leading tab. 
+Where can libraries be installed. ldconfig as above -v shows directories without a leading tab and the libraries in the directories have a leading tab. 
 ```
 ldconfig -v | grep -v $'\t'
 ```
