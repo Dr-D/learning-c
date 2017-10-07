@@ -1,7 +1,10 @@
 # libraries
 
 The header files are e.g. stdio.h (/usr/include/stdio.h) contain the prototype methods. The compiled code is held within libraries e.g  /lib/x86_64-linux-gnu/libc.so.6 (symbolic link to libc-2.23.so).
-These usually end in .so or .a. As for the libc.so.6 the number is the major version number and there will often be a symbolic link that has no number that links to the versions library.
+
+These usually end in .so = Shared Object or .a = Archive. The archive type libraries end up statically linked to your program. That is the code is actually embedded into your final executable. Shared object libraries are referenced by your final executable, this means your final code is smaller but may depend on a specific version of the library.
+
+As for the libc.so.6 the number is the major version number and there will often be a symbolic link that has no number that links to the versions library.
 
 To create an archive user ar
 ```
