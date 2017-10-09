@@ -3,7 +3,7 @@
 #include <mysql/mysql.h>
 
 void executeQuery(MYSQL *, char[]);
-void getResult(MYSQL *, char[]);
+void showResult(MYSQL *, char[]);
 
 int main(int argc, char *argv[]) {
   MYSQL *conn = mysql_init(NULL);
@@ -23,8 +23,8 @@ int main(int argc, char *argv[]) {
   executeQuery(conn, "USE drd;");
   executeQuery(conn, "CREATE TABLE PERSON (ID BIGINT NOT NULL, NAME VARCHAR(20) NOT NULL);");
   executeQuery(conn, "INSERT INTO PERSON (ID, NAME) VALUES (1, 'Mickey');");
-  executeQuery(conn, "SELECT ID, NAME FROM  PERSON;");
-  //  executeQuery(conn, "DROP DATABASE drd;");
+  showResult(conn, "SELECT ID, NAME FROM  PERSON;");
+  executeQuery(conn, "DROP DATABASE drd;");
   
   mysql_close(conn);
   exit(EXIT_SUCCESS);
@@ -38,12 +38,13 @@ void executeQuery(MYSQL *conn, char query[]) {
   }
 }
 
-void getResult(MYSQL *conn, char select[]) {
-  executeQuery(conn, select);
+void showResult(MYSQL *conn, char select[]) {
+  mysql_query(conn, select);
 
   MYSQL_RES *res = mysql_store_result(conn);
   if(res == NULL) {
     printf("Failed to get result: '%s", mysql_error(conn));
+    mysql_close(conn);
     exit(EXIT_FAILURE);
   }
 
@@ -52,12 +53,12 @@ void getResult(MYSQL *conn, char select[]) {
   MYSQL_ROW row;
 
   while((row = mysql_fetch_row(res))) {
-    for(int i = 0; i < num_fields; i++) {
+    int i;
+    for(i = 0; i < num_fields; i++) {
       char *aValue = row[i] ? row[i] : NULL;
       printf("%s ", aValue);
     }
     printf("\n");
   }
   mysql_free_result(res);
-  mysql_close(conn);
 }
