@@ -1,3 +1,4 @@
+#Second makefile
 a:
 	touch a
 
