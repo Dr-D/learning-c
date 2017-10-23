@@ -1,0 +1,4 @@
+
+%%
+test printf("ok");
+%%
