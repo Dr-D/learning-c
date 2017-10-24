@@ -14,7 +14,7 @@ Could be tokenised into:
 INTEGER, VAL(count), EQUALS, VAL(0), SEMICOLON
 ```
 
-What the lexer has done is scan the input file and found:
+What the lexer has done is scan the input file splitting it in to parts and found:
  'int' - this is in the list of language specific words so knows it is an INTEGER.
  'count'- this is not a language specific word so is tokenised to a user defined value.
  '=' - is an operator 
@@ -23,12 +23,27 @@ What the lexer has done is scan the input file and found:
 
 These tokens are then passed to a parser (yacc/bison) that checks/parses the tokens to make sure the code is has the correct syntax/ordering.
 
+## Simple Syntax Examples 
+**Extra int on second line**
 ```
 int main(int argc, char *argv[]) {
   int int count = 0;
-    return 0;
+  return 0;
 }
 ```
+Producing tokens:
+```
+INTEGER, INTEGER, VAL(count), EQUALS, VAL(0), SEMICOLON
+```
 
-When we try to compile the above code we see 'error: two or more data types in declaration specifiers'
-The parser will have a check to make there is only ever one data type for the expression.
+When we try to compile the above code we see  this error `two or more data types in declaration specifiers`. The parser will have a check to make there is only ever one data type for the expression.
+
+**Two values together**
+```
+int count count = 0;
+```
+Producing tokens:
+```
+INTEGER, VAL(count), VAL(count), EQUALS, VAL(0), SEMICOLON
+```
+If we try to compile above code we see this error `expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘count’`.
