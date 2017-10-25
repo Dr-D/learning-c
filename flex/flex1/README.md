@@ -4,9 +4,13 @@ This first use of flex is present to start to show how a flex file is formatted 
 ## Format of flex file
 
 definitions
+
 %%
+
 rules
+
 %%
+
 user code
 
 ## Creating the lexer
