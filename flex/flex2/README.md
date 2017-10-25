@@ -21,6 +21,8 @@ There is also a second way for creating a defintion <name> <definition>. The nam
 ## Rules
 Here we are still just printing out values so we print out the digit we found and the c variable num is incremented by one each time we find a digit and is printed out.
 
+Note the space in front of the comment in this section, if not present the comment shows as an unrecognised rule.
+
 ## Lexer output
 Compile and run the lexer:
 ```
