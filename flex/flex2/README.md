@@ -16,7 +16,7 @@ DIGIT  [0-9]
 ## Defintions
 Note how a c type variable is created using %{ and ending in %}, if you get a premature EOF error then check the ordering of these. Also check if there are spaces in front of these opening and closing values.
 
-There is also a second way for creating a defintion <name> <definition>. The name of the defintion is DIGIT and the defintion is a regex that check for a single char if it is a digit.
+There is also a second way for creating a defintion <name> <definition>. The name of the defintion is DIGIT and the defintion is a regex that checks for a single char if it is a digit.
 
 ## Rules
 Here we are still just printing out values so we print out the digit we found and the c variable num is incremented by one each time we find a digit and is printed out.
