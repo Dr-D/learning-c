@@ -46,7 +46,7 @@ Producing tokens:
 ```
 INTEGER, VAL(count), VAL(count), EQUALS, VAL(0), SEMICOLON
 ```
-Error `expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘count’`.
+If we try to compile above code we see this error `expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘count’`.
 
 **No variable type**
 ```
