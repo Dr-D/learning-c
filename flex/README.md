@@ -47,3 +47,13 @@ Producing tokens:
 INTEGER, VAL(count), VAL(count), EQUALS, VAL(0), SEMICOLON
 ```
 If we try to compile above code we see this error `expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘count’`.
+
+**No variable type**
+```
+count = 0;
+```
+Producing tokens:
+```
+VAL(count), EQUALS, VAL(0), SEMICOLON
+```
+Error: ‘count’ undeclared (first use in this function).
