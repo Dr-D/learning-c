@@ -4,7 +4,7 @@ Learning C, using Ubuntu.
 
 Install c compiler and make.
 ```
-sudo apt-get install build-essentials
+sudo apt-get install build-essential
 ```
 
 Run make to create the executable
