@@ -11,7 +11,7 @@ We already have copies of the string pointers so do not need to initialise any v
 The loop ends when we get to the string terminator character '\0'.
 The character is copied and we move to the next position in the strings. 
 
-These simle methods are good examples of:
+These simple methods are good examples of:
 * Method parameters are copies of what is passed to them.
 ** When we print the final src & src2 strings the pointers are still at the start of the strings
 * Pointer arithmetic - we are starting at the first character of the string and incrementing by one
