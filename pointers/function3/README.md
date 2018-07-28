@@ -12,6 +12,13 @@ arr_func[0] is the pointer to add_func = 90 + 10.
 
 arr_func[1] is the pointer to multiply_func = 100 * 5.
 
+# main2.c
+
+Coming back to this with a bit more experience trying to have a play with function pointers.
+
+Difficulty trying to dereference a pointer to an array of function pointers.
+
+
 
 
 
