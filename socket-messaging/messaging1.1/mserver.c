@@ -38,7 +38,13 @@ void *mserver(void *ptr) {
   mreq.imr_interface.s_addr = htonl(INADDR_ANY);
   setsockopt(sd, IPPROTO_IP, IP_ADD_MEMBERSHIP, &mreq, sizeof(mreq));
 
+  sprintf(shared_message, "Initial message\n");
+  
   while (1) {
     recvfrom(sd, shared_message, 100, 0, res->ai_addr, &res->ai_addrlen);
+    time_t time_now;
+    time(&time_now);
+
+    printf("%s: %s\n", ctime(&time_now), shared_message);
   }
 }
