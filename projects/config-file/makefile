@@ -1,5 +1,5 @@
-DEPS=main.c trim.c
-OBJS=main.o trim.o
+DEPS=main.c properties.c  trim.c
+OBJS=main.o properties.o  trim.o
 CFLAGS=-Wall
 
 main: $(OBJS)

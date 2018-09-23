@@ -8,7 +8,6 @@
 void strtrim(char *src, char *dst) {
   while(isspace(*src)) {
     src++;
-    printf("src: '%s'\n", src);
   }
 
   *dst = *src;
