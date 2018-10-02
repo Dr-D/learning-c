@@ -1,9 +1,9 @@
-DEPS=mserver.c main.c
-OBJS=mserver.o main.o
+DEPS=mserver.c main.c mclient.c properties.c trim.c
+OBJS=mserver.o main.o mclient.o properties.o trim.o
 CFLAGS=-Wall
 
-main: mserver.o
-	cc $(CFLAGS) -pthread -o main main.o mserver.o -lpthread
+main: $(OBJS)
+	cc $(CFLAGS) -pthread -o main $(OBJS) -lpthread
 
 $(OBJS): $(DEPS)
 	cc $(CFLAGS) -c $(DEPS)

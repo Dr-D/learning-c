@@ -9,43 +9,73 @@
 #include <string.h>
 
 #include "mserver.h"
+#include "mclient.h"
+#include "properties.h"
 
 #define MESSAGE_SIZE 10
 
+char multicast_addr[15];
+char multicast_port[5];
+
+static void read_properties();
+
 int main(int argc, char *argv[]) {
+
+  read_properties();
+
   pthread_t server_thread;
-  int pthread_res = pthread_create(&server_thread, NULL, mserver, "SERVER_THREAD");
-  if (pthread_res) {
-    fprintf(stderr, "Error - pthread_create(), response code: '%d'", pthread_res);
+  int serv_res = pthread_create(&server_thread, NULL, mserver, "SERVER_THREAD");
+  if (serv_res) {
+    fprintf(stderr, "Error - pthread_create(server), response code: '%d'", serv_res);
     exit(EXIT_FAILURE);
   }
 
-  struct addrinfo hints, *res;
-  memset(&hints, 0 , sizeof hints);
-  hints.ai_family = AF_INET;
-  hints.ai_socktype = SOCK_DGRAM;
-
-  getaddrinfo("225.0.0.37", "12345", &hints, &res);
-
-  int sd = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
-
-  while(1) {
-    printf("Enter message: ");
-    char client_message[MESSAGE_SIZE];
-    fgets(client_message, MESSAGE_SIZE, stdin);
-
-    //swap new line for end of string char
-    for(int i = 0; i < MESSAGE_SIZE; i++) {
-      if(client_message[i] == '\n') {
-        client_message[i] = '\0';
-      }
-    }
-
-    client_message[MESSAGE_SIZE -1] = '\0';//ensure max size of string
-
-    sendto(sd, client_message, strlen(client_message) + 1,0,  res->ai_addr, res->ai_addrlen);
-    sleep(1);
+  int client_res = pthread_create(&server_thread, NULL, mclient, "CLIENT_THREAD");
+  if (client_res) {
+    fprintf(stderr, "Error - pthread_create(client), response code: '%d'", client_res);
+    exit(EXIT_FAILURE);
   }
 
-  close(sd);
+  while(1){}
+}
+
+static void read_properties() {
+
+  struct Property *pprops = properties_get();
+  struct Property *temp = pprops;
+  printf("\n\nGot properties from config file.\n");
+
+  int i = 0;
+  while(pprops != NULL) {
+    printf("Found property[%d]): '%s':'%s'\n", i, pprops->name, pprops->value);
+    pprops = pprops->property;
+    i++;
+  }
+
+  pprops = temp;
+
+  struct Property prop_arr[i];
+  for(int j = 0; j < i; j++) {
+    properties_copy(pprops, &prop_arr[j]);
+    if(strcmp("MULTICAST_ADDRESS", pprops->name) == 0) {
+      if(strlen(pprops->value) > 15) {
+        fprintf(stderr, "Invalid MULTICAST_ADDRESS: '%s'", pprops->value);
+        exit(EXIT_FAILURE);
+      }
+      strcpy(multicast_addr, pprops->value);
+        printf("Copied  property[%d]): '%s':'%s'\n", j, prop_arr[j].name, prop_arr[j].value);
+    }
+    if(strcmp("MULTICAST_PORT", pprops->name) == 0) {
+      if(strlen(pprops->value) > 5) {
+        fprintf(stderr, "Invalid MULTICAST_PORT: '%s'", pprops->value);
+        exit(EXIT_FAILURE);
+      }
+      strcpy(multicast_port, pprops->value);
+      printf("Copied  property[%d]): '%s':'%s'\n", j, prop_arr[j].name, prop_arr[j].value);
+    }
+
+    pprops = pprops->property;
+  }
+
+  properties_free();
 }

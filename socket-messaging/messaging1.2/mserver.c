@@ -11,6 +11,9 @@
 
 #include "mserver.h"
 
+char multicast_addr[15];
+char multicast_port[5];
+
 static char shared_message[100];
 
 char *mserver_get_message() {
@@ -18,13 +21,15 @@ char *mserver_get_message() {
 }
 
 void *mserver(void *ptr) {
+  printf("Starting server address: '%s', port: '%s'\n", multicast_addr, multicast_port);
+
   struct addrinfo hints, *res;
   memset(&hints, 0 , sizeof hints);
   hints.ai_family = AF_INET;
   hints.ai_socktype = SOCK_DGRAM;
   hints.ai_protocol = 0;
 
-  getaddrinfo("0.0.0.0", "12345", &hints, &res);
+  getaddrinfo("0.0.0.0", multicast_port, &hints, &res);
 
   int sd = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
 
@@ -34,7 +39,7 @@ void *mserver(void *ptr) {
   bind(sd, res->ai_addr, res->ai_addrlen);
 
   struct ip_mreq mreq;
-  mreq.imr_multiaddr.s_addr = inet_addr("225.0.0.37");
+  mreq.imr_multiaddr.s_addr = inet_addr(multicast_addr);
   mreq.imr_interface.s_addr = htonl(INADDR_ANY);
   setsockopt(sd, IPPROTO_IP, IP_ADD_MEMBERSHIP, &mreq, sizeof(mreq));
 
