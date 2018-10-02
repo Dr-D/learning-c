@@ -13,6 +13,8 @@ Will have to think about how to resolve a cache where two nodes update the cache
 
 ## Other
 Thinking ahead - may need to have unique id for each server/node in the cluster and the multicast will be a hearbeat that broadcasts this information.
+Each instance will need an ip address in a configuration file - when client sends ip addresses and we start opening unicast sockets between instances they must all be configured to be on same network. 
+
 Will need a collection to record the server/node ids being broadcast.
 
 Simple algorithm that can order the ip addresses and then can connect to the two servers with the closest ip addresses one above and one below. NB may only be single or two servers/nodes in the cluster so will need a check for this. i.e. dont form cluster for single node and only create single tcp socket for two nodes.
