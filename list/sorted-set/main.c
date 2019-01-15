@@ -47,5 +47,9 @@ int main(int argc, char *argv[]) {
   set_print();
   printf("8*******************\n");
 
+  set_add("D");
+  set_print();
+  printf("9*******************\n");
+
   exit(EXIT_SUCCESS);
 }

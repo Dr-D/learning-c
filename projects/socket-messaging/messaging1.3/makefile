@@ -1,5 +1,5 @@
-DEPS=mserver.c main.c mclient.c properties.c trim.c readprops.c
-OBJS=mserver.o main.o mclient.o properties.o trim.o readprops.o
+DEPS=mserver.c main.c mclient.c properties.c trim.c readprops.c set.c
+OBJS=mserver.o main.o mclient.o properties.o trim.o readprops.o set.o
 CFLAGS=-Wall
 
 main: $(OBJS)

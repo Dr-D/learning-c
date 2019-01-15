@@ -10,6 +10,7 @@
 #include <pthread.h>
 
 #include "mserver.h"
+#include "set.h"
 
 char multicast_addr[15];
 char multicast_port[5];
@@ -17,21 +18,11 @@ char host_addr[15];
 
 static char shared_message[15];
 
-struct ListAddress {
-  char address[15];
-  struct ListAddress *next;
-};
-
-static struct ListAddress *addresses;
-
 char *mserver_get_message() {
   return shared_message;
 }
 
-static void add_address();
-
 void *mserver(void *ptr) {
-  addresses = NULL;
   printf("Starting server address: '%s', port: '%s'\n", multicast_addr, multicast_port);
 
   struct addrinfo hints, *res;
@@ -60,29 +51,9 @@ void *mserver(void *ptr) {
     recvfrom(sd, shared_message, 100, 0, res->ai_addr, &res->ai_addrlen);
     time_t time_now;
     time(&time_now);
-    add_address(shared_message);
+    //   add_address(shared_message); ***********************************
 
     //ctime returns string that has new line on the end
     printf("%s Received host address: %s\n", ctime(&time_now), host_addr);
   }
-}
-
-//Add the address if not already present, ordered by ip address
-static void add_address(char address[]) {
-  if (addresses == NULL) {
-    addresses = malloc(sizeof(struct ListAddress));
-    strcpy(addresses->address, address);
-    addresses->next = NULL;
-  }
-
-  //smallest should be first
-  if(strcmp() == -1) {
-    tmp = addresses;
-    addresses = malloc(sizeof(struct ListAddress));
-    strcpy(addresses->address, address);
-    addresses->next = tmp;
-  }
-
-  
-
 }
