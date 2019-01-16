@@ -1,4 +1,4 @@
-# make4
+# make6
 
 ## makefile1
 A HEAD variable has been added that contains a list of the header files.

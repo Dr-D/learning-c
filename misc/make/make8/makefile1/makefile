@@ -4,11 +4,12 @@ HEAD=mymath.h myprint.h myrand.h
 CFLAGS=-Wall
 
 %.o: %.c $(HEAD)
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) -c -o $@ $< $(CFLAGS) $(CCOPTS)
 
 main: $(OBJS)
-	$(CC) -o $@ $(OBJS) $(CFLAGS)
+	$(CC) -o $@ $(OBJS) $(CFLAGS) $(CCOPTS)
 
 .PHONY: clean
 clean:
-	-rm *.o main
+	$(RM) -f main *.o
+

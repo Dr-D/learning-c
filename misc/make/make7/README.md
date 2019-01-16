@@ -1,4 +1,4 @@
-# make4
+# make7
 
 ## makefile1
 Several changes have been made to make things a bit more complicated but shows the versatility of using make for your project. NB We have include the -Wall CFLAGS option here which was previously commented out.
@@ -19,12 +19,14 @@ Although this is a very contrived set of files we have added to the project it d
 
 ## makefile2
 
-In this second file we show and example of a make built in variable, although we have already been using built in variables.
+In this second file we show an example of a make built in/predefined variable, although we have already been using predefined variables.
 
 The clean recipe has been updated with '-f' to stop error messages showing if a file is not present.
 There is a commented out line that used $(RM) instead. This a built in variable that uses the correct remove file option for the system the makefile is running on.
 
 Remove (rm) is found on pretty much all linux type systems so is not really needed but shows that we have not set the RM variable at the top of the script.
 
-If you comment out the CC variable at the top of the file the makefile still works and uses the c compiler from your system which may be 'cc' or 'gcc'.
+If you comment out the CC variable at the top of the file the makefile still works and uses the c compiler from your system which defaults to 'cc' but could use'gcc'.
+
+You can find many others in the GNU Make manual.
 
