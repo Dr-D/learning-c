@@ -45,3 +45,13 @@ Where can libraries be installed. ldconfig as above -v shows directories without
 ```
 ldconfig -v | grep -v $'\t'
 ```
+
+When executing the application it will need the shared object library to be available.
+One way to do this is to export LD_LIBARY_PATH=/path/to/sharedobject/dir:$LD_LIBRARY_PATH.
+
+Try doing: objdump -p main
+This shows the private headers for an executable file
+Should show this section: 
+Dynamic Section:<br>
+  NEEDED               libmy.so <br>
+  NEEDED               libc.so.6 <br>
